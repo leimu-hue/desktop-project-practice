@@ -1,0 +1,132 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- 设置图片 -->
+    <FontFamily x:Key="iconFont">pack://application:,,,/IntelligentControl;component/Assets/fonts/#iconfont</FontFamily>
+    <ImageSource x:Key="loginImageBrush">pack://application:,,,/IntelligentControl;component/Assets/images/1.jpg</ImageSource>
+    <!-- 设置登录信息部分 开头的字体样式 -->
+    <Style x:Key="loginTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="22"></Setter>
+    </Style>
+    <Style x:Key="littleLoginTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="10"></Setter>
+        <Setter Property="Foreground" Value="#888"></Setter>
+    </Style>
+    <!-- 设置用户名和密码输入文本框的样式 -->
+    <Style x:Key="baseTextBlockStyle" TargetType="Control">
+        <Setter Property="Height" Value="35"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+    <Style x:Key="userNameTextBlockStyle" TargetType="TextBox" BasedOn="{StaticResource baseTextBlockStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Name="userNameBorder" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="#DDD" BorderThickness="0 0 1 0" Margin="0 8 5 8"/>
+                            <TextBlock Name="userNamePlaceHolder" Text="请输入用户名" Grid.Column="1" VerticalAlignment="Center"
+                                       Foreground="#BBB" Visibility="Collapsed" FontSize="12" Margin="2, 0" />
+                            <TextBlock Text="&#xe606;"
+                                       FontFamily="{StaticResource iconFont}" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Foreground="#DDD"></TextBlock>
+                            <ScrollViewer Name="PART_ContentHost" Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden" 
+                                          VerticalScrollBarVisibility="Hidden"
+                                          Grid.Column="1"
+                                          VerticalAlignment="Center"
+                                          MinHeight="20"
+                                          ></ScrollViewer>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.56" TargetName="userNameBorder"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="BorderBrush" Value="#FF7EB4EA" TargetName="userNameBorder"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="False">
+                            <Setter Property="BorderBrush" Value="#FF569DE5" TargetName="userNameBorder"></Setter>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=UserModel.UserName}" Value="">
+                            <Setter Property="Visibility" Value="Visible" TargetName="userNamePlaceHolder"></Setter>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="passwordTextBlockStyle" TargetType="PasswordBox" BasedOn="{StaticResource baseTextBlockStyle}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="PasswordBox">
+                    <Border Name="passwordBorder" BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="#DDD" BorderThickness="0 0 1 0" Margin="0 8 5 8"/>
+                            <TextBlock Name="passwordPlaceHolder" Text="请输入密码" Grid.Column="1" VerticalAlignment="Center"
+                                       Foreground="#BBB" Visibility="Collapsed" FontSize="12" Margin="2, 0" />
+                            <TextBlock Text="&#xe601;"
+                                       FontFamily="{StaticResource iconFont}" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       Foreground="#DDD"></TextBlock>
+                            <ScrollViewer Name="PART_ContentHost" Focusable="False"
+                                          HorizontalScrollBarVisibility="Hidden" 
+                                          VerticalScrollBarVisibility="Hidden"
+                                          Grid.Column="1"
+                                          VerticalAlignment="Center"
+                                          MinHeight="20"
+                                          ></ScrollViewer>
+                        </Grid>
+                    </Border>
+                    <!-- 密码框的显示 -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.56" TargetName="passwordBorder"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="BorderBrush" Value="#FF7EB4EA" TargetName="passwordBorder"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="False">
+                            <Setter Property="BorderBrush" Value="#FF569DE5" TargetName="passwordBorder"></Setter>
+                        </Trigger>
+                        <DataTrigger Binding="{Binding Path=UserModel.Password}" Value="">
+                            <Setter Property="Visibility" Value="Visible" TargetName="passwordPlaceHolder"></Setter>
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!-- 设置关闭按钮控制模板 -->
+    <ControlTemplate TargetType="Button" x:Key="CloseButtonTemplate">
+        <Grid Background="Transparent" Name="Back">
+            <!-- #表示引用字体，iconfont表示ttf里面对应的字体名称，而不是文件名称 -->
+            <TextBlock Text="&#xe60e;"
+                       FontFamily="{StaticResource iconFont}" VerticalAlignment="Center" HorizontalAlignment="Center"
+                       FontSize="14"></TextBlock>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#DDD" TargetName="Back"></Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+</ResourceDictionary>

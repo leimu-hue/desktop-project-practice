@@ -1,0 +1,17 @@
+﻿<Application x:Class="IntelligentControl.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:IntelligentControl.Views"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <Application.Resources>
+        <!-- 定义窗口的icon样式 -->
+        <ImageSource x:Key="windowIcon">pack://application:,,,/IntelligentControl;component/Assets/icon/icon.ico</ImageSource>
+        <!-- 定义login窗口所需要的字符串 -->
+        <sys:String x:Key="defaultLoginTitle" >登录</sys:String>
+        <!-- 设置默认字体样式 -->
+        <Style TargetType="Window">
+            <Setter Property="FontFamily" Value="Microsoft YaHei"></Setter>
+            <Setter Property="FontWeight" Value="ExtraLight"></Setter>
+        </Style>
+    </Application.Resources>
+</Application>
