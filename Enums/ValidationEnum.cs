@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IntelligentControl.enums
+﻿namespace IntelligentControl.enums
 {
     /// <summary>
     /// 用户有效状态枚举
@@ -16,6 +10,6 @@ namespace IntelligentControl.enums
 
         // 有效
         EFFECTIVE = 1
-            
+
     }
 }

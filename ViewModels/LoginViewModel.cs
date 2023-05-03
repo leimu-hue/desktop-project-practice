@@ -1,14 +1,8 @@
 ﻿using IntelligentControl.Base;
 using IntelligentControl.DataAccess;
-using IntelligentControl.enums;
 using IntelligentControl.Models;
-using MySql.Data.MySqlClient;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace IntelligentControl.ViewModels
@@ -20,33 +14,39 @@ namespace IntelligentControl.ViewModels
 
         public UserModel UserModel { set; get; }
 
-        public LoginViewModel() {
+        public LoginViewModel()
+        {
             this.UserModel = new UserModel("", "");
             this._closeCommand = new CommandBase(CloseLoginWindow);
             this._loginCommand = new CommandBase(LoginLogic);
             this.mysqlAccess = new MysqlAccess();
+            this._errorMessge = string.Empty;
         }
 
         // 关闭命令
         private readonly CommandBase _closeCommand;
 
-        public CommandBase CloseCommand { 
+        public CommandBase CloseCommand
+        {
             get { return _closeCommand; }
         }
 
         // 登录命令
         private readonly CommandBase _loginCommand;
 
-        public CommandBase LoginCommand {
-            get { return _loginCommand;  }
+        public CommandBase LoginCommand
+        {
+            get { return _loginCommand; }
         }
 
         private string _errorMessge;
 
         // 登录错误描述
-        public string ErrorMessage {
+        public string ErrorMessage
+        {
             get { return _errorMessge; }
-            set {
+            set
+            {
                 _errorMessge = value;
                 this.NotifyChanged();
             }
@@ -57,7 +57,8 @@ namespace IntelligentControl.ViewModels
         /// 关闭命令
         /// </summary>
         /// <param name="obj"></param>
-        public void CloseLoginWindow(object? obj) { 
+        public void CloseLoginWindow(object? obj)
+        {
             if (obj != null)
             {
                 var win = (obj as Window);
@@ -73,7 +74,8 @@ namespace IntelligentControl.ViewModels
         /// 登录命令
         /// </summary>
         /// <param name="obj"></param>
-        public void LoginLogic(object? obj) {
+        public void LoginLogic(object? obj)
+        {
             this.ErrorMessage = "";
             if (obj != null)
             {
@@ -82,7 +84,8 @@ namespace IntelligentControl.ViewModels
                 {
                     return;
                 }
-                if (string.IsNullOrEmpty(this.UserModel.UserName) || string.IsNullOrEmpty(this.UserModel.Password)) {
+                if (string.IsNullOrEmpty(this.UserModel.UserName) || string.IsNullOrEmpty(this.UserModel.Password))
+                {
                     this.ErrorMessage = "用户名和密码不能为空";
                     return;
                 }
@@ -96,11 +99,12 @@ namespace IntelligentControl.ViewModels
                     { "@Password", this.UserModel.Password }
                 };
                 DataTable ds = mysqlAccess.ExecuteDataTable(userSql, sqlParams);
-                if (ds == null) {
+                if (ds == null)
+                {
                     this.ErrorMessage = "未知错误";
                     return;
                 }
-                
+
                 if (ds.Rows.Count <= 0)
                 {
                     this.ErrorMessage = "用户名或者密码不正确";

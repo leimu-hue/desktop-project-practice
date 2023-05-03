@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 
 namespace IntelligentControl.Base
@@ -22,10 +17,11 @@ namespace IntelligentControl.Base
 
         public static string GetPasswordContent(DependencyObject obj)
         {
-            return (string) obj.GetValue(PasswordProperty);
+            return (string)obj.GetValue(PasswordProperty);
         }
 
-        public static void SetPasswordContent(DependencyObject obj, string password) {
+        public static void SetPasswordContent(DependencyObject obj, string password)
+        {
             obj.SetValue(PasswordProperty, password);
         }
 
@@ -64,16 +60,19 @@ namespace IntelligentControl.Base
                 return;
             }
             passwordBox.PasswordChanged -= Pb_PasswordChanged;
-            var password = (string) e.NewValue;
-            if (!_isUpdating) {
+            var password = (string)e.NewValue;
+            if (!_isUpdating)
+            {
                 passwordBox.Password = password;
             }
             passwordBox.PasswordChanged += Pb_PasswordChanged;
         }
 
-        private static void Pb_PasswordChanged(object sender, RoutedEventArgs e) {
+        private static void Pb_PasswordChanged(object sender, RoutedEventArgs e)
+        {
             var passwordBox = sender as PasswordBox;
-            if (passwordBox == null) {
+            if (passwordBox == null)
+            {
                 return;
             }
             _isUpdating = true;

@@ -1,17 +1,7 @@
 ﻿using IntelligentControl.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace IntelligentControl.Views
 {
@@ -26,9 +16,11 @@ namespace IntelligentControl.Views
             this.DataContext = new LoginViewModel();
         }
 
-        private void My_MouseLeftButtonDown(object sender, RoutedEventArgs e) {
+        private void My_MouseLeftButtonDown(object sender, RoutedEventArgs e)
+        {
             Point point = Mouse.GetPosition(sender as Grid);
-            if (point.Y <= 15) {
+            if (point.Y <= 15)
+            {
                 this.DragMove();
             }
         }

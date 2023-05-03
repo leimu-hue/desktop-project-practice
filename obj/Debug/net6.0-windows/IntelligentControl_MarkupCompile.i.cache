@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\26274\Desktop\LINQPad\WPF\WPFProject\Project1\IntelligentControl\obj\Debug\net6.0-windows\
+D:\myProject\desktop-project-practice\obj\Debug\net6.0-windows\
 IntelligentControl
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\26274\Desktop\LINQPad\WPF\WPFProject\Project1\IntelligentControl\App.xaml
+D:\myProject\desktop-project-practice\App.xaml
 3-401349236
 3-1279043659
-20-345492162
-2021984449120
+19-314269823
+202-691839428
 resourceStyle\loginWindowDictionary.xaml;Views\LoginWindow.xaml;Views\MainWindow.xaml;
 
-False
+True
 

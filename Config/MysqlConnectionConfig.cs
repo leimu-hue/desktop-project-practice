@@ -1,11 +1,7 @@
 ﻿using log4net;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IntelligentControl.config
 {
@@ -21,12 +17,18 @@ namespace IntelligentControl.config
 
         private static MysqlConfigInfo? _configInfo = null;
 
-        private static MysqlConfigInfo? ConfigInfo {
-            get {
-                try {
-                    if (_configInfo == null) {
-                        lock (INIT_LOCK) {
-                            if (_configInfo == null) {
+        private static MysqlConfigInfo? ConfigInfo
+        {
+            get
+            {
+                try
+                {
+                    if (_configInfo == null)
+                    {
+                        lock (INIT_LOCK)
+                        {
+                            if (_configInfo == null)
+                            {
                                 _configInfo = new MysqlConfigInfo();
                                 Type type = _configInfo.GetType();
                                 var properties = type.GetProperties();
@@ -34,7 +36,8 @@ namespace IntelligentControl.config
                                 {
                                     var fieldName = property.Name;
                                     object? fieldValue = ConfigurationManager.ConnectionStrings[fieldName]?.ConnectionString;
-                                    if (fieldValue == null) {
+                                    if (fieldValue == null)
+                                    {
                                         continue;
                                     }
                                     fieldValue = Convert.ChangeType(fieldValue, property.PropertyType);
@@ -43,7 +46,9 @@ namespace IntelligentControl.config
                             }
                         }
                     }
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                     logger.Info($"数据库连接配置读取出现异常, errorMsg: {e.Message}");
                     _configInfo = null;
                 }
@@ -56,14 +61,16 @@ namespace IntelligentControl.config
         /// 返回连接池配置信息
         /// </summary>
         /// <returns></returns>
-        public static string? GetMysqlConfigInfoStr() {
+        public static string? GetMysqlConfigInfoStr()
+        {
             return ConfigInfo?.convertToConnectionString();
         }
 
         /// <summary>
         /// mysql数据库配置信息
         /// </summary>
-        private class MysqlConfigInfo {
+        private class MysqlConfigInfo
+        {
 
             /// <summary>
             /// 连接地址

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\26274\\Desktop\\LINQPad\\WPF\\WPFProject\\Project1\\IntelligentControl\\IntelligentControl.csproj": {}
+    "D:\\myProject\\desktop-project-practice\\IntelligentControl.csproj": {}
   },
   "projects": {
-    "D:\\26274\\Desktop\\LINQPad\\WPF\\WPFProject\\Project1\\IntelligentControl\\IntelligentControl.csproj": {
+    "D:\\myProject\\desktop-project-practice\\IntelligentControl.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\26274\\Desktop\\LINQPad\\WPF\\WPFProject\\Project1\\IntelligentControl\\IntelligentControl.csproj",
+        "projectUniqueName": "D:\\myProject\\desktop-project-practice\\IntelligentControl.csproj",
         "projectName": "IntelligentControl",
-        "projectPath": "D:\\26274\\Desktop\\LINQPad\\WPF\\WPFProject\\Project1\\IntelligentControl\\IntelligentControl.csproj",
-        "packagesPath": "C:\\Users\\26274\\.nuget\\packages\\",
-        "outputPath": "D:\\26274\\Desktop\\LINQPad\\WPF\\WPFProject\\Project1\\IntelligentControl\\obj\\",
+        "projectPath": "D:\\myProject\\desktop-project-practice\\IntelligentControl.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "D:\\myProject\\desktop-project-practice\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\Softwares\\Microsoft Visual Studio2019\\Shared\\NuGetPackages"
+          "D:\\Soft wares\\IDE\\新建文件夹\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\26274\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -76,7 +77,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

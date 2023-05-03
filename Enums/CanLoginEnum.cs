@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace IntelligentControl.enums
+﻿namespace IntelligentControl.enums
 {
     /// <summary>
     /// 用户是否可以登录枚举

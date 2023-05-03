@@ -1,9 +1,4 @@
 ﻿using IntelligentControl.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IntelligentControl.Models
 {
@@ -17,29 +12,34 @@ namespace IntelligentControl.Models
         private string? _userName;
 
         private string? _password;
-        
-        public string? UserName { 
+
+        public string? UserName
+        {
             get { return _userName; }
-            set {
+            set
+            {
                 _userName = value;
                 this.NotifyChanged();
             }
         }
 
-        public string? Password { 
+        public string? Password
+        {
             get { return _password; }
-            set {
+            set
+            {
                 _password = value;
                 this.NotifyChanged();
-            } 
+            }
         }
 
-        public UserModel(string userName, string password) { 
+        public UserModel(string userName, string password)
+        {
             this.UserName = userName;
             this.Password = password;
         }
 
-        
+
 
     }
 }

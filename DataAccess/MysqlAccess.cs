@@ -3,14 +3,7 @@ using log4net;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace IntelligentControl.DataAccess
 {
@@ -18,7 +11,7 @@ namespace IntelligentControl.DataAccess
     {
 
         private static readonly ILog logger = LogManager.GetLogger(typeof(MysqlAccess));
-        
+
         /// <summary>
         /// mysql数据库连接信息
         /// </summary>
@@ -34,7 +27,8 @@ namespace IntelligentControl.DataAccess
         public MysqlAccess()
         {
             var connectionStr = MysqlConnectionConfig.GetMysqlConfigInfoStr();
-            if (string.IsNullOrEmpty(connectionStr)) {
+            if (string.IsNullOrEmpty(connectionStr))
+            {
                 throw new Exception("数据库配置读取出错");
             }
             mySqlConnection = new MySqlConnection(connectionStr);
@@ -43,7 +37,8 @@ namespace IntelligentControl.DataAccess
         /// <summary>
         /// 打开数据库连接
         /// </summary>
-        public void OpenConnect() {
+        public void OpenConnect()
+        {
             try
             {
                 if (mySqlConnection.State == ConnectionState.Closed)
@@ -55,29 +50,47 @@ namespace IntelligentControl.DataAccess
                     mySqlConnection.Close();
                     mySqlConnection.Open();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 logger.Info($"打开数据库连接时发生异常, errorMsg: {ex.Message}");
                 throw;
             }
         }
 
-        public void CloseConnect() {
-            try {
+        /// <summary>
+        /// 关闭连接
+        ///     如果存在事务还没有提交，就会进行一次事务提交
+        /// </summary>
+        public void CloseConnect()
+        {
+            try
+            {
+                if (mySqlTransaction != null)
+                {
+                    mySqlTransaction.Commit();
+                    mySqlTransaction.Dispose();
+                    mySqlTransaction = null;
+                }
                 if (mySqlConnection.State != ConnectionState.Closed)
                 {
                     mySqlConnection.Close();
                 }
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 logger.Info($"关闭数据库连接时发生异常, errorMsg: {ex.Message}");
                 throw;
             }
         }
 
-        public void BeginTransaction() {
-            try {
+        public void BeginTransaction()
+        {
+            try
+            {
                 mySqlTransaction = mySqlConnection.BeginTransaction();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 logger.Info($"开启事务处理时发生异常, errorMsg: {ex.Message}");
                 throw;
@@ -86,13 +99,17 @@ namespace IntelligentControl.DataAccess
 
         public void CommitTransaction()
         {
-            try {
-                if (mySqlTransaction != null) {
+            try
+            {
+                if (mySqlTransaction != null)
+                {
                     mySqlTransaction.Commit();
                     mySqlTransaction.Dispose();
                     mySqlTransaction = null;
                 }
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 logger.Info($"提交事务发生异常, errorMsg: {e.Message}");
                 throw;
             }
@@ -101,8 +118,10 @@ namespace IntelligentControl.DataAccess
 
         public void RollbackTransaction()
         {
-            try {
-                if (mySqlTransaction != null) {
+            try
+            {
+                if (mySqlTransaction != null)
+                {
                     mySqlTransaction.Rollback();
                     mySqlTransaction.Dispose();
                     mySqlTransaction = null;
@@ -121,14 +140,18 @@ namespace IntelligentControl.DataAccess
         /// <param name="sql"></param>
         /// <param name="sqlParams"></param>
         /// <returns></returns>
-        public int ExecuteNonQuery(string sql, Dictionary<string, object> sqlParams) {
+        public int ExecuteNonQuery(string sql, Dictionary<string, object> sqlParams)
+        {
             int row = -1;
-            try {
+            try
+            {
                 using var command = mySqlConnection.CreateCommand();
                 command.CommandText = sql;
                 createMysqlCommand(command, sqlParams);
                 row = command.ExecuteNonQuery();
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 logger.Info($"执行sql语句时发生异常, errorMsg: {e.Message}");
                 throw;
             }
@@ -139,7 +162,8 @@ namespace IntelligentControl.DataAccess
         /// 执行sql查询，并且返回第一行的第一列的值
         /// </summary>
         /// <returns></returns>
-        public object? ExecuteScalar(string sql, Dictionary<string, object> sqlParams) {
+        public object? ExecuteScalar(string sql, Dictionary<string, object> sqlParams)
+        {
             object? result = null;
             try
             {
@@ -148,7 +172,8 @@ namespace IntelligentControl.DataAccess
                 createMysqlCommand(command, sqlParams);
                 result = command.ExecuteScalar();
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 logger.Info($"执行sql语句时发生异常, errorMsg: {e.Message}");
                 throw;
             }
@@ -162,7 +187,8 @@ namespace IntelligentControl.DataAccess
         /// <param name="sql"></param>
         /// <param name="sqlParams"></param>
         /// <returns></returns>
-        public MySqlDataReader? ExecuteReader(string sql, Dictionary<string, object> sqlParams) {
+        public MySqlDataReader? ExecuteReader(string sql, Dictionary<string, object> sqlParams)
+        {
             MySqlDataReader? result = null;
             try
             {
@@ -222,7 +248,8 @@ namespace IntelligentControl.DataAccess
                 {
                     mysqlDataApdater.Fill(result);
                 }
-                else {
+                else
+                {
                     mysqlDataApdater.Fill(result, srcTable);
                 }
             }
@@ -240,7 +267,8 @@ namespace IntelligentControl.DataAccess
         /// <param name="command"></param>
         /// <param name="sqlParams"></param>
         /// <returns></returns>
-        private void createMysqlCommand(MySqlCommand command, Dictionary<string, object> sqlParams) {
+        private void createMysqlCommand(MySqlCommand command, Dictionary<string, object> sqlParams)
+        {
             if (sqlParams != null && sqlParams.Count > 0)
             {
                 foreach (KeyValuePair<string, object> keyValuePair in sqlParams)

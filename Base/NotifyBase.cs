@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IntelligentControl.Base
 {
@@ -16,7 +11,8 @@ namespace IntelligentControl.Base
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public void NotifyChanged([CallerMemberName] string proName = "") {
+        public void NotifyChanged([CallerMemberName] string proName = "")
+        {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(proName));
         }
 

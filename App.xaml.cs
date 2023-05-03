@@ -1,14 +1,7 @@
-﻿using log4net;
-using log4net.Config;
-using IntelligentControl.Views;
+﻿using IntelligentControl.Views;
+using log4net;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using log4net.Repository.Hierarchy;
 
 namespace IntelligentControl
 {
@@ -26,7 +19,8 @@ namespace IntelligentControl
             var loginWindows = new LoginWindow();
             var result = loginWindows.ShowDialog();
             logger.Info($"登录状态: {result ?? false}");
-            if (!(result ?? false)) {
+            if (!(result ?? false))
+            {
                 logger.Info("登录失败, 程序退出");
                 Application.Current.Shutdown();
                 Environment.Exit(0);
