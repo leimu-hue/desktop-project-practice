@@ -4,10 +4,13 @@
              xmlns:local="clr-namespace:IntelligentControl.Views"
              xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <Application.Resources>
+        <!-- 引入fontFamily样式路径 -->
+        <FontFamily x:Key="iconFont">pack://application:,,,/IntelligentControl;component/Assets/fonts/#iconfont</FontFamily>
         <!-- 定义窗口的icon样式 -->
         <ImageSource x:Key="windowIcon">pack://application:,,,/IntelligentControl;component/Assets/icon/icon.ico</ImageSource>
         <!-- 定义login窗口所需要的字符串 -->
         <sys:String x:Key="defaultLoginTitle" >登录</sys:String>
+        <sys:String x:Key="defaultMainTitle" >主窗口</sys:String>
         <!-- 设置默认字体样式 -->
         <Style TargetType="Window">
             <Setter Property="FontFamily" Value="Microsoft YaHei"></Setter>

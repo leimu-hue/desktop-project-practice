@@ -12,6 +12,7 @@
     <None Remove="Assets\fonts\iconfont.ttf" />
     <None Remove="Assets\icon\icon.ico" />
     <None Remove="Assets\images\1.jpg" />
+    <None Remove="Assets\images\request.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +24,9 @@
     </Content>
     <Content Include="Assets\images\1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\images\request.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

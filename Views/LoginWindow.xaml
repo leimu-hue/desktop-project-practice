@@ -80,7 +80,8 @@
                 <Button Content="登    录"
                         Background="#FF104991" Foreground="Wheat"
                         Command="{Binding LoginCommand}"
-                        CommandParameter="{Binding ., RelativeSource={RelativeSource AncestorType=Window}}"></Button>
+                        CommandParameter="{Binding ., RelativeSource={RelativeSource AncestorType=Window}}"
+                        Cursor="Hand"></Button>
             </DockPanel>
             <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="Hidden"
                           HorizontalScrollBarVisibility="Hidden" Height="100"

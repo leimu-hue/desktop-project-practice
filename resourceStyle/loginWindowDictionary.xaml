@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!-- 设置图片 -->
-    <FontFamily x:Key="iconFont">pack://application:,,,/IntelligentControl;component/Assets/fonts/#iconfont</FontFamily>
     <ImageSource x:Key="loginImageBrush">pack://application:,,,/IntelligentControl;component/Assets/images/1.jpg</ImageSource>
     <!-- 设置登录信息部分 开头的字体样式 -->
     <Style x:Key="loginTitle" TargetType="TextBlock">

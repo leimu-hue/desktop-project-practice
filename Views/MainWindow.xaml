@@ -5,8 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IntelligentControl.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
+        Icon="{StaticResource windowIcon}"
+        Title="{StaticResource defaultMainTitle}"
+        WindowStartupLocation="CenterScreen"
+        Width="800">
+    <Window.Effect>
+        <DropShadowEffect/>
+    </Window.Effect>
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="15"
+                      GlassFrameThickness ="0"
+                      CornerRadius="0"/>
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <ResourceDictionary Source="pack://application:,,,/IntelligentControl;component/resourceStyle/mainWindowDictionary.xaml" />
+    </Window.Resources>
+    <Grid WindowChrome.IsHitTestVisibleInChrome="True" MouseLeftButtonDown="My_MouseLeftButtonDown">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Border Background="#3268DE"
+                Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90" />
+                    <RowDefinition />
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Stretch="Uniform"  Source="pack://application:,,,/IntelligentControl;component/Assets/images/request.png"/>
+                
+                <!-- Table 图标 -->
+                <StackPanel Grid.Row="1"
+                            VerticalAlignment="Center">
+                    <Label Height="80" Tag="1" Style="{StaticResource LeftMenuOneStyle}" MouseDoubleClick="LabelClick" />
+                    <Label Height="80" Style="{StaticResource LeftMenuTwoStyle}" MouseDoubleClick="LabelClick" />
+                    <Label Height="80" Style="{StaticResource LeftMenuThreeStyle}" MouseDoubleClick="LabelClick" />
+                    <Label Height="80" Style="{StaticResource LeftMenuFourStyle}" MouseDoubleClick="LabelClick" />
+                </StackPanel>
+                <!-- 设置图标 -->
+                <Label Grid.Row="2" Style="{StaticResource settingStyleButton}" MouseDoubleClick="LabelClick" />
+            </Grid>
+        </Border>
     </Grid>
 </Window>
